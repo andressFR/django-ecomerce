@@ -1,0 +1,61 @@
+{% extends "store/layouts/main.html" %}
+
+{%load static%}
+
+{% block title %}
+    Digital Haven
+{% endblock title %}
+
+{% block content %}
+    {% include "store/inc/slider.html" %}
+
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Descubre Nuestros Productos</h1>
+                <p>
+                    Encuentra lo mejor de celulares, laptops, moda y tenis con 
+                    los mejores precios en nuestra tienda en línea.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <img src="{% static 'images/tenis.png' %}" class="rounded-circle img-fluid border">
+                <h5 class="text-center mt-3 mb-3">Tenis</h5>
+                <p class="text-center"><a href="{% url 'collections' %}" class="btn btn-success">Comprar</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <img src="{% static 'images/playera.png' %}" class="rounded-circle img-fluid border">
+                <h2 class="h5 text-center mt-3 mb-3">Playeras</h2>
+                <p class="text-center"><a href="{% url 'collections' %}" class="btn btn-success">Comprar</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <img src="{% static 'images/hp1.webp' %}" class="rounded-circle img-fluid border">
+                <h2 class="h5 text-center mt-3 mb-3">Laptops</h2>
+                <p class="text-center"><a href="{% url 'collections' %}" class="btn btn-success">Comprar</a></p>
+            </div>
+        </section>
+    </div>
+
+
+    
+{% endblock%}
+
+{% block footer %}
+    {% include "store/inc/footer.html" %}
+{% endblock footer %}
+
+{% block scripts %}
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script>
+    alertify.alert('Advertencia', 'Este sitio esta hecho con fines practicos, no introduzcas datos personales', function(){ alertify.success('(☞ﾟヮﾟ)☞'); });
+
+    if (navigator.geolocation) { //check if geolocation is available
+        navigator.geolocation.getCurrentPosition(function(position){
+          console.log(position);
+        });   
+    }
+</script>
+
+{% endblock scripts %}

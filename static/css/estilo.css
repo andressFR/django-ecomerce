@@ -1,0 +1,23 @@
+*{
+    font-family: 'Lobster', sans-serif;
+    font-family: 'Onest', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+.product-viewtag{
+    background-color: red;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 22px;
+    margin-left: 1rem;
+    padding: 7px 10px;
+    font-weight: 600;
+    min-width: 45px;
+}
+
+

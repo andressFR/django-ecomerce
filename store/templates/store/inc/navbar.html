@@ -1,0 +1,73 @@
+{%load static%}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <div class="container">
+        <a class="navbar-brand text-success logo h1 align-self-center" href="{% url "home" %}"
+            style="font-size:2.5rem; font-family:'calibri'" ;>
+            Digital Haven
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link lista " href="{% url "home" %}"><i class="bi bi-house-door-fill"></i> Inicio</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link lista " href="{% url "home" %}" >Tienda</a>
+                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link lista" href="{% url 'collections' %}"><i
+                            class="bi bi-bag-heart-fill"></i>Tienda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link lista" href="{% url 'about' %}"><i class="bi bi-shop-window"></i> Nosotros</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> {{ request.user }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesion</a>
+                    </div>
+                </li>
+
+                {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-circle"></i> Usuario</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="{% url 'loginpage' %}">Iniciar Sesion</a>
+                        <a class="dropdown-item" href="{% url 'register' %}">Registrarse</a>
+                    </div>
+                </li>
+                {% endif %}
+
+                {% comment %}
+                <li class="nav-item">
+                    <a style"display:flex;" class="nav-link lista" href="{% url 'cart' %}">
+                        <i class="bi bi-cart4"></i>
+                        <p id="cart-total">0</p>
+                    </a>
+
+                </li>
+                {% endcomment %}
+                <div class="form-inline my-2 my-lg-0">
+
+                    <a href="{% url 'cart' %}">
+                        <img id="cart-icon" src="{% static 'images/carrito.png' %}">
+                        <p id="cart-total">{{ cartItems }}</p>
+                    </a>
+
+                </div>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<br/><br/><br/>

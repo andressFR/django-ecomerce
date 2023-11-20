@@ -1,0 +1,90 @@
+{% extends "store/layouts/main.html" %}
+
+<!--Pagina de productos de una categoria-->
+
+{% block title %}
+    {{category.name}}
+{% endblock title %}
+
+{% block content %}
+
+    <!--navegacion entre categorias-->
+    <div class="py-3 bg-primary">
+        <a class="text-white" href="{% url 'home' %}">Inicio /</a>
+        <a class="text-white" href="{% url 'collections' %}">Tienda /</a>
+        <a class="text-white" href="{% url 'collectionsview' category.slug %}">{{ category.name }}</a>
+    </div>
+
+    {% comment %}
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ category.name }}</h1>
+                <hr>
+                <div class="row">
+                {% for item in products %}
+                   
+                    <div class="col-md-3">
+                        <div class="card">
+                            <a href="{% url 'productview' item.category.slug item.slug %}">
+                                <div class="category-image">
+                                    <img src="{{ item.product_image.url }}" class="card-img-top w-100">
+                                </div>
+                                <div class="box-element product">
+                                    <h6><strong>{{ item.name }}</strong></h6>
+                                    <hr>
+                                
+                                    <small class="float-start">${{ item.original_price | stringformat:'d' }}</small><!--precio original-->
+                                    <small class="float-end">${{ item.selling_price | stringformat:'d' }}</small><!--precio con descuento-->
+                                
+                                </div> 
+                            </a>
+                        </div>
+                    </div>
+                 {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+
+    {% endcomment %}
+
+    <div class="container">
+        <h1 class="text-center">{{ category.name }}</h1>
+        <hr>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            {% for item in products %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ item.product_image.url }}" >
+                    <div class="card-body">
+                        <p class="card-text">{{ item.name }}</p>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="float-start"><s>${{ item.original_price | stringformat:'d' }}</s></small><!--precio original-->
+                            <small class="float-end">${{ item.selling_price | stringformat:'d' }}</small><!--precio con descuento-->
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="">
+                                <button data-product="{{ item.id }}" data-action="add" type="button" 
+                                class="btn btn-sm btn-outline-secondary update-cart">
+                                    Agregar
+                                </button>
+                                <a class="btn btn-sm btn-outline-success" href="{% url 'productview' item.category.slug item.slug %}">Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    
+    
+        </div>
+      </div>
+   
+{% endblock content %}
+
+
+
